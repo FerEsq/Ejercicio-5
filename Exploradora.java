@@ -13,8 +13,9 @@ public class Exploradora extends Jugador<Jugador>
     {
         super();
         this.item = new Anillo();
+        this.mascota = null;
         this.nombre = "Exploradora";
-        this.vida = 500;
+        this.vida = 400;
         this.ataque = 20;
     }
     
@@ -23,9 +24,15 @@ public class Exploradora extends Jugador<Jugador>
      */
     public void usarItem(Jugador j)
     {
-        if (this.vida < 500)
+        if (this.vida < 400)
         {
             this.vida += item.getDamage();
+        }
+        else
+        {
+            System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		    System.out.println("La exploradora esta completamente curada, desperdiciaste tu item :(");
+		    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
         }
     }    
 }

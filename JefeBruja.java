@@ -11,7 +11,7 @@ public class JefeBruja extends Bruja
     {
         super();
         this.nombre = "Jefe Bruja";
-        this.vida = 350;
+        this.vida = 300;
         this.ataque = 25;
         this.habilidadE = "Encantamiento";
         this.damageE = 60;

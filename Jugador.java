@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public abstract class Jugador<COM> extends CombatienteABS<ArrayList <Enemigo>>
 {
     protected Item item;
+    protected Mascota mascota;
     
     public Jugador()
     {
@@ -40,5 +41,21 @@ public abstract class Jugador<COM> extends CombatienteABS<ArrayList <Enemigo>>
      * @param es
      */
     public abstract void usarItem(COM c);
+
+    //Mascotas
+    public Mascota getMascota()
+    {
+        return mascota;
+    }
+
+    public void setMascota()
+    {
+        mascota = null;
+    }
+
+    public void newMascota()
+    {
+        mascota = new Mascota();
+    }
     
 }

@@ -39,7 +39,7 @@ public class Vista
     //Mensaje de error de opción
     public void mostrarError()
     {
-        System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println("Esa opción no existe, intente de nuevo");
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     }
@@ -151,10 +151,11 @@ public class Vista
      }
 
     //Menú guerrero
-    public int menuJugador()
+    public int menuJugador(int n)
     {
         int op = 0;
-        System.out.println("¿Que desea hacer? (ingrese solo el número)");	
+        n = n+1;
+        System.out.println("Jugador " + n + ": ¿Que desea hacer? (ingrese solo el número)");	
 		System.out.println("1. Atacar");
 		System.out.println("2. Usar item");
         System.out.println("3. Retirarse");
@@ -164,7 +165,7 @@ public class Vista
     }
 
     //Menú espada
-    public String pedirObjetivo(ArrayList <CombatienteABS> e)
+    public String pedirClon(ArrayList <CombatienteABS> e)
     {
         int op = 0;
         String t = "";
@@ -198,9 +199,54 @@ public class Vista
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     }
 
+    //Mensaje de muerte de la mascota
+    public void mostrarRaid()
+    {
+        System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("El Raid ha comenzado, Cailleach la Diosa del invierno se une a la batalla");
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    }
+
+    public void mostrarEstatus(ArrayList <Jugador> j, ArrayList <Enemigo> e)
+    {
+        System.out.println("~~~~~~~~~~~~~~~~ Estatus ~~~~~~~~~~~~~~~");
+
+
+        for (int i = 0; i < j.size(); i++)
+        {
+            System.out.println("• " + j.get(i).getNombre() + ": " + j.get(i).getVida() + " HP");
+            if (j.get(i).getNombre().equals("Cazador"))
+            {
+                System.out.println("    • " + j.get(i).getMascota().getNombre() + ": " + j.get(i).getMascota().getVida() + " HP");
+            }
+        }        
+        for (int i = 0; i < e.size(); i++)
+        {
+            System.out.println("• " + e.get(i).getNombre() + ": " + e.get(i).getVida() + " HP");
+        }
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    }
+
     public void separar()
     {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
-   
+
+    //Mensaje de ganadores
+    public void mostrarGanadores(String c)
+    {
+        System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("El raid ha terminado, y los " + c + " han resultado ganadores");
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    }
+
+    //Mensaje de ganadores
+    public void mostrarMuerteJ(String n, int p)
+    {
+        p = p+1;
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("El jugador " + p + " con el combatiente " + n + " ha muerto");
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    }
+       
 }

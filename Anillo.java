@@ -11,7 +11,7 @@ public class Anillo extends Item
     {
         super();
         this.tipo = "Anillo";
-        this.damage = 20; //este actuará como la vida que recupera al jugador en lugar del daño que provoca
+        this.damage = 30; //este actuará como la vida que recupera al jugador en lugar del daño que provoca
         this.usos = 20;
     }
 }

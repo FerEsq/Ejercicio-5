@@ -14,8 +14,9 @@ public class Guerrero extends Jugador<ArrayList <Enemigo>>
     {
         super();
         this.item = new Espada();
+        this.mascota = null;
         this.nombre = "Guerrero";
-        this.vida = 800;
+        this.vida = 500;
         this.ataque = 30;
     }
 

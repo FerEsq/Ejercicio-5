@@ -10,40 +10,22 @@ import java.util.ArrayList;
 
 public class Cazador extends Jugador<ArrayList <Enemigo>>
 {
-
-    private Mascota mascota;
-
     public Cazador()
     {
         super();
-        mascota = new Mascota();
+        this.mascota = new Mascota();
         this.item = null;
         this.nombre = "Cazador";
         this.vida = 300;
-        this.ataque = 30;
+        this.ataque = 10;
     }
 
     public void usarItem(ArrayList <Enemigo> es)
     {
         for (int i = 0; i < es.size(); i++)
         {
-            es.get(i).setVida(this.ataque);
+            es.get(i).setVida(mascota.getAtaque());
         }
-    }
-
-    public void setMascota()
-    {
-        mascota = null;
-    }
-
-    public void newMascota()
-    {
-        mascota = new Mascota();
-    }
-
-    public Mascota getMascota()
-    {
-        return mascota;
     }
 
 }

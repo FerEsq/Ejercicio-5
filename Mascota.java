@@ -14,6 +14,7 @@ public class Mascota extends Jugador<ArrayList <Enemigo>>
     {
         super();
         this.item = null;
+        this.mascota = null;
         this.nombre = "Caracal";
         this.vida = 150;
         this.ataque = 50;
