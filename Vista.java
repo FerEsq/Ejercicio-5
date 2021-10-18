@@ -44,6 +44,19 @@ public class Vista
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     }
 
+    //Menú guerrero
+    public int pedirJugadores()
+    {
+        int op = 0;
+        System.out.println("¿Cuantos jugadores participarán en la batalla? (ingrese solo el número)");	
+		System.out.println("1. Un jugador");
+		System.out.println("2. Dos jugadores");
+        System.out.println("3. Tres jugadores");
+
+        op = scan.nextInt();
+        return op;
+    }
+
     //Menú rol
     public int pedirRol()
     {
@@ -51,7 +64,7 @@ public class Vista
         System.out.println("¿Que rol desea tener? (ingrese solo el número)");	
 		System.out.println("1. Guerrero");
 		System.out.println("2. Exploradora");
-        System.out.println("2. Cazador");
+        System.out.println("3. Cazador");
 
         op = scan.nextInt();
         return op;
@@ -120,12 +133,21 @@ public class Vista
      public int menuHabilidad()
      {
          int op = 0;
+         int h = 0;
          System.out.println("¿Que habilidad desea tomar? (ingrese solo el número)");	
          System.out.println("1. Habilidad normal");
          System.out.println("2. Habilidad especial");
- 
+          
          op = scan.nextInt();
-         return op;
+         if(op == 1)
+         {
+            h = 50;
+         }
+         else if (op == 2)
+         {
+             h = 100;
+         }
+         return h;
      }
 
     //Menú guerrero
@@ -142,16 +164,18 @@ public class Vista
     }
 
     //Menú espada
-    public int pedirObjetivo(ArrayList <Combatiente> e)
+    public String pedirObjetivo(ArrayList <CombatienteABS> e)
     {
         int op = 0;
+        String t = "";
         System.out.println("¿A que combatiente desea clonar? (ingrese solo el número)");
         for (int i = 0; i < e.size(); i++)
         {
             System.out.println(i + ". " + e.get(i).getNombre());
-        } 
+        }         
         op = scan.nextInt();
-        return op;
+        t = e.get(op).getNombre();
+        return t;
     }
 
     //Menú exploradora

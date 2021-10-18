@@ -50,5 +50,10 @@ public abstract class CombatienteABS<AL>
         return ataque;
     }
 
-    public abstract void atacar(AL list);    
+    public abstract void atacar(AL list); 
+    
+    public void setAtaque(int a)
+    {
+        this.ataque = a;
+    }
 }

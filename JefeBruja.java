@@ -15,6 +15,5 @@ public class JefeBruja extends Bruja
         this.ataque = 25;
         this.habilidadE = "Encantamiento";
         this.damageE = 60;
-    }
-    
+    }    
 }
