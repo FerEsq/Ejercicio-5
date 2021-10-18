@@ -5,7 +5,10 @@
  * Recursos: Visual Studio Code
  * Historial: Finalizado el 28.09.2021 */
 
-public class Enemigo extends Combatiente
+  //import
+  import java.util.ArrayList; 
+
+public class Enemigo extends CombatienteABS<ArrayList <Jugador>>
 {
     protected String habilidad;
     protected String habilidadE;
@@ -34,11 +37,14 @@ public class Enemigo extends Combatiente
     }
     
     /** 
-     * @param j
+     * @param es
      */
-    public void atacar(Jugador j)
+    public void atacar(ArrayList <Jugador> es)
     {
-        j.setVida(this.getAtaque());
+        for (int i = 0; i < es.size(); i++)
+        {
+            es.get(i).setVida(this.ataque);
+        }
     }
     
     /** 
@@ -49,7 +55,7 @@ public class Enemigo extends Combatiente
     {
         j.setVida(d);
     }
-    
+
     /** 
      * @return int
      */

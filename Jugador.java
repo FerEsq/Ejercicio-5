@@ -8,7 +8,7 @@
 //import
 import java.util.ArrayList;  
 
-public class Jugador extends Combatiente
+public abstract class Jugador<COM> extends CombatienteABS<ArrayList <Enemigo>>
 {
     protected Item item;
     
@@ -28,42 +28,17 @@ public class Jugador extends Combatiente
     /** 
      * @param es
      */
-    public void atacarES(ArrayList <Enemigo> es)
+    public void atacar(ArrayList <Enemigo> es)
     {
         for (int i = 0; i < es.size(); i++)
         {
             es.get(i).setVida(this.ataque);
         }
     }
-    
-    /** 
-     * @param e
-     */
-    public void usarItem(Enemigo e)
-    {
-        e.setVida(this.item.getDamage());
-    }
-    
+        
     /** 
      * @param es
      */
-    public void usarItemD(ArrayList <Enemigo> es)
-    {
-        for (int i = 0; i < es.size(); i++)
-        {
-            es.get(i).setVida(this.ataque);
-        }
-    }
+    public abstract void usarItem(COM c);
     
-    /** 
-     * @param j
-     */
-    public void usarItemC(Jugador j)
-    { 
-        if (this.vida < 500)
-        {
-            this.vida += item.getDamage();
-        }
-    }
-
 }

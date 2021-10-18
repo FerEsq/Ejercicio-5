@@ -5,7 +5,10 @@
  * Recursos: Visual Studio Code
  * Historial: Finalizado el 28.09.2021 */
 
-public class Guerrero extends Jugador
+//import
+import java.util.ArrayList;  
+
+public class Guerrero extends Jugador<ArrayList <Enemigo>>
 {
     public Guerrero()
     {
@@ -14,9 +17,14 @@ public class Guerrero extends Jugador
         this.nombre = "Guerrero";
         this.vida = 800;
         this.ataque = 30;
-        this.mensajes[0] = "¡No sobrevivirás al filo de mi espada!";
-        this.mensajes[1] = "Supongo que los buenos no siempre ganan";
-        this.mensajes[2] = "Siempre logro repartir un poco de justicia";
+    }
+
+    public void usarItem(ArrayList <Enemigo> es)
+    {
+        for (int i = 0; i < es.size(); i++)
+        {
+            es.get(i).setVida(this.item.getDamage());
+        }
     }
     
 }
