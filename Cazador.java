@@ -3,7 +3,7 @@
  * Programador: Fernanda Esquivel (esq21542@uvg.edu.gt).
  * Lenguaje: Java
  * Recursos: Visual Studio Code
- * Historial: Finalizado el xx.10.2021 */
+ * Historial: Finalizado el 18.10.2021 */
 
  //import
 import java.util.ArrayList;  
