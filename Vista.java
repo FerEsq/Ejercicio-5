@@ -240,6 +240,10 @@ public class Vista
         for (int i = 0; i < e.size(); i++)
         {
             System.out.println("• " + e.get(i).getNombre() + ": " + e.get(i).getVida() + " HP");
+            if (e.get(i).getClon() != null)
+            {
+                System.out.println("    • " + e.get(i).getClon().getNombre() + ": " + e.get(i).getClon().getVida() + " HP");
+            }
         }
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     }
