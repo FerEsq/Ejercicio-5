@@ -44,6 +44,30 @@ public class Vista
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     }
 
+    //Mensaje de clon activo
+    public void mostrarClonActivo()
+    {
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("Hay un clon en batalla, por lo que esta opción está desahibilitada");
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    }
+
+    //Mensaje de clon activo
+    public void mostrarSinClon()
+    {
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("No hay un clon en batalla, porfavor cree uno primero");
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    }
+
+    //Mensaje de clon activo
+    public void mostrarSinPC()
+    {
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("No hay ningun combatiente que pueda ser clonado");
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    }
+
     //Menú guerrero
     public int pedirJugadores()
     {
@@ -74,7 +98,7 @@ public class Vista
     public int menuEnemigo()
     {
         int op = 0;
-        System.out.println("¿Que desea que el enemigo haga? (ingrese solo el número)");	
+        System.out.println("¿Que desea que la Bruja haga? (ingrese solo el número)");	
 		System.out.println("1. Atacar");
 		System.out.println("2. Usar habilidad");
         System.out.println("3. Retirarse");
@@ -87,12 +111,11 @@ public class Vista
     public int menuJefe()
     {
         int op = 0;
-        System.out.println("¿Que desea que el enemigo haga? (ingrese solo el número)");	
+        System.out.println("¿Que desea que la Jefe Bruja haga? (ingrese solo el número)");	
 		System.out.println("1. Atacar");
 		System.out.println("2. Usar habilidad");
         System.out.println("3. Usar habilidad especial");
-        System.out.println("4. Saltar turno");
-        System.out.println("5. Retirarse");
+        System.out.println("4. Retirarse");
 
         op = scan.nextInt();
         return op;
@@ -102,7 +125,7 @@ public class Vista
      public int menuRaid()
      {
          int op = 0;
-         System.out.println("¿Que desea que el enemigo haga? (ingrese solo el número)");	
+         System.out.println("¿Que desea que Cailleach haga? (ingrese solo el número)");	
          System.out.println("1. Atacar");
          System.out.println("2. Usar habilidad");
          System.out.println("3. Usar habilidad especial");
@@ -115,22 +138,8 @@ public class Vista
          return op;
      }
 
-     //Menú raid boss
-     public int menuClon()
-     {
-         int op = 0;
-         System.out.println("¿Que desea que el Raid Boss haga? (ingrese solo el número)");	
-         System.out.println("1. Usar Clon");
-         System.out.println("2. Variar");
-         System.out.println("3. Liberar");
-         System.out.println("4. Retirarse");
- 
-         op = scan.nextInt();
-         return op;
-     }
-
-     //Menú raid boss
-     public int menuHabilidad()
+     //Menú variar
+     public int menuVariar()
      {
          int op = 0;
          int h = 0;
@@ -141,7 +150,7 @@ public class Vista
          op = scan.nextInt();
          if(op == 1)
          {
-            h = 50;
+            h = 80;
          }
          else if (op == 2)
          {
@@ -150,7 +159,7 @@ public class Vista
          return h;
      }
 
-    //Menú guerrero
+    //Menú jugador
     public int menuJugador(int n)
     {
         int op = 0;
@@ -164,42 +173,20 @@ public class Vista
         return op;
     }
 
-    //Menú espada
-    public String pedirClon(ArrayList <CombatienteABS> e)
+    //Menú clonar
+    public int pedirClon(ArrayList <CombatienteABS> e)
     {
         int op = 0;
-        String t = "";
         System.out.println("¿A que combatiente desea clonar? (ingrese solo el número)");
         for (int i = 0; i < e.size(); i++)
         {
             System.out.println(i + ". " + e.get(i).getNombre());
         }         
         op = scan.nextInt();
-        t = e.get(op).getNombre();
-        return t;
-    }
-
-    //Menú exploradora
-    public int menuCazador()
-    {
-        int op = 0;
-        System.out.println("¿Que desea hacer? (ingrese solo el número)");	
-		System.out.println("1. Atacar y lanzar Mascota");
-        System.out.println("2. Retirarse");
-
-        op = scan.nextInt();
         return op;
     }
 
-    //Mensaje de muerte de la mascota
-    public void mostrarMuerte()
-    {
-        System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println("La mascota ha muerto, revivirá en 3 turnos");
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-    }
-
-    //Mensaje de muerte de la mascota
+    //Mensaje de inicio de batalla
     public void mostrarRaid()
     {
         System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -235,17 +222,25 @@ public class Vista
     //Mensaje de ganadores
     public void mostrarGanadores(String c)
     {
-        System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println("El raid ha terminado, y los " + c + " han resultado ganadores");
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     }
 
-    //Mensaje de ganadores
+    //Mensaje de muerte de jugador
     public void mostrarMuerteJ(String n, int p)
     {
         p = p+1;
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println("El jugador " + p + " con el combatiente " + n + " ha muerto");
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    }
+
+    //Mensaje de ganadores
+    public void mostrarMuerteE(String n)
+    {
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("El enemigo " + n + " ha muerto");
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     }
        

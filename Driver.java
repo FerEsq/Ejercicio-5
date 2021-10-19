@@ -29,12 +29,13 @@ class Driver
         boolean turnoJ = true;
         boolean turnoE = false;
         boolean salir = false;
+        boolean capaz = true;
         int turnosRES = 3;
         int rol = 0;
         int jug = 0;
         int opE = 0;
         int opJ = 0;
-        int obj = 0;
+        int pc = 0;
         int contador = 0;
 
 		
@@ -97,21 +98,21 @@ class Driver
             vista.mostrarRaid();
             while (salir == false)
             {
-                //============================= TURNO JUGADOR =============================
+                //============================= TURNO JUGADORES =============================
                 if (turnoJ == true) 
                 {
+                    Predicate<Jugador> con = v -> (v.getVida() <= 0);
+                    for (int i = 0; i < jugadores.size(); i++) //para cada jugador
+                    {                       
+                        if (con.test(jugadores.get(i)) == true ) //el jugador ya no tiene vida
+                        {
+                            vista.mostrarMuerteJ(jugadores.get(i).getNombre(), i);
+                        }
+                    }
+                    jugadores.removeIf(con); //quitar jugadores sin vida
+
                     if (jugadores.isEmpty() == false) //si aun hay jugadores
                     {
-                        Predicate<Jugador> con = v -> (v.getVida() <= 0);
-                        for (int i = 0; i < jugadores.size(); i++) //para cada jugador
-                        {                       
-                            if (con.test(jugadores.get(i)) == true ) //el jugador ya no tiene vida
-                            {
-                                vista.mostrarMuerteJ(jugadores.get(i).getNombre(), i);
-                            }
-                        }
-                        jugadores.removeIf(con); //quitar jugadores sin vida
-
                         for (int i = 0; i < jugadores.size(); i++) //para cada jugador
                         {
                             opJ = vista.menuJugador(i);
@@ -135,7 +136,7 @@ class Driver
                                     jugadores.get(i).usarItem(enemigos); //lanza la mascota
                                 }
                             }
-                            else if (opJ == 3)
+                            else if (opJ == 3) //salir
                             {
                                 salir = true;
                                 vista.mostrarDespedida();
@@ -150,6 +151,7 @@ class Driver
                     else
                     {
                         vista.mostrarGanadores("enemigos");
+                        salir = true;
                     }
 
                     if (salir == false)
@@ -161,9 +163,184 @@ class Driver
                     }
                 }
 
+                //============================= TURNO ENEMIGOS =============================
+                if (turnoE == true) 
+                {
+                    Predicate<Enemigo> con = v -> (v.getVida() <= 0);
+                    for (int i = 0; i < enemigos.size(); i++) //para cada enemigo
+                    {                       
+                        if (con.test(enemigos.get(i)) == true ) //el enemigo ya no tiene vida
+                        {
+                            vista.mostrarMuerteE(enemigos.get(i).getNombre());
+                        }
+                    }
+                    enemigos.removeIf(con); //quitar enemigos sin vida
 
+                    if (enemigos.isEmpty() == false) //si aun hay enemigos
+                    {
+                        //Primero juega el raidboss
+                        boolean bandera = false;
+                        while (bandera == false)
+                        {
+                            opE = vista.menuRaid();
+                            if (opE == 1) //atacar
+                            {
+                                if (capaz == true)
+                                {
+                                    enemigos.get(0).atacar(jugadores);
+                                    bandera = true;
+                                }
+                                else
+                                {
+                                    enemigos.get(0).atacar(jugadores);
+                                    enemigos.get(0).getClon().usarClon(jugadores);
+                                    bandera = true;
+                                }
+                            }
+                            else if (opE == 2) //usar habilidad 
+                            {
+                                if (capaz == true)
+                                {
+                                    enemigos.get(0).usarHabilidad(jugadores, enemigos.get(0).getDamageH());
+                                    bandera = true;
+                                }
+                                else
+                                {
+                                    vista.mostrarClonActivo();
+                                }
+                            }
+                            else if (opE == 3) //usar habilidad especial
+                            {
+                                if (capaz == true)
+                                {
+                                    enemigos.get(0).usarHabilidad(jugadores, enemigos.get(0).getDamageE());
+                                    bandera = true;
+                                }
+                                else
+                                {
+                                    vista.mostrarClonActivo();
+                                }
+                            }
+                            else if (opE == 4) //clonar
+                            {
+                                if (Pclones.isEmpty() == false)
+                                {
+                                    capaz = false; //capaz se vuelve false pues ya no podrá usar sus habilidades
+                                    pc = vista.pedirClon(Pclones); //pedir el combatiente a clonar
+                                    enemigos.get(0).clonar(Pclones.get(pc).getNombre()); //clonarlo
+                                    bandera = true;
+                                }
+                                else
+                                {
+                                    vista.mostrarSinPC();
+                                }
+                            }
+                            else if (opE == 5) //variar
+                            {
+                                if (capaz == false)
+                                {
+                                    int na = vista.menuVariar(); //pedir habilidad a variar
+                                    enemigos.get(0).variar(na); //variarla
+                                    bandera = true;
+                                }
+                                else
+                                {
+                                    vista.mostrarSinClon();
+                                }
+                            }
+                            else if (opE == 6) //liberar
+                            {
+                                if (capaz == false)
+                                {
+                                    capaz = true; //capaz es true de nuevo
+                                    enemigos.get(0).liberar(); //liberar clon
+                                    bandera = true;
+                                }
+                                else
+                                {
+                                    vista.mostrarSinClon();
+                                }
+                            }
+                            else if (opE == 7) //salir
+                            {
+                                salir = true;
+                                vista.mostrarDespedida();
+                                break;
+                            }
+                            else if (opE > 7 || opE < 1)
+                            {
+                                vista.mostrarError();
+                            }
+                        }
 
+                        //Luego juegan los otros enemigos
+                        if (n == 1 && enemigos.size() > 1) //hay un enemigo
+                        {
+                            opE = vista.menuJefe();
+                            if (opE == 1) //atacar
+                            {
+                                enemigos.get(1).atacar(jugadores);
+                            }
+                            else if (opE == 2) //usar habilidad
+                            {
+                                enemigos.get(1).usarHabilidad(jugadores, enemigos.get(0).getDamageH());
+                            }
+                            else if (opE == 3) //usar habilidad especial
+                            {
+                                enemigos.get(1).usarHabilidad(jugadores, enemigos.get(0).getDamageE());
+                            }
+                            else if (opE == 4) //salir
+                            {
+                                salir = true;
+                                vista.mostrarDespedida();
+                                break;
+                            }
+                            else if (opE > 4 || opE < 1)
+                            {
+                                vista.mostrarError();
+                            }
+                        }
 
+                        if (n == 2 && enemigos.size() > 1) //hay dos enemigos
+                        {
+                            for (int i = 1; i < enemigos.size(); i++)
+                            {
+                                opE = vista.menuEnemigo();
+                                if (opE == 1) //atacar
+                                {
+                                    enemigos.get(1).atacar(jugadores);
+                                }
+                                else if (opE == 2) //usar habilidad
+                                {
+                                    enemigos.get(0).usarHabilidad(jugadores, enemigos.get(0).getDamageH());
+                                }
+                                else if (opE == 3) //salir
+                                {
+                                    salir = true;
+                                    vista.mostrarDespedida();
+                                    break;
+                                }
+                                else if (opE > 3 || opE < 1)
+                                {
+                                    vista.mostrarError();
+                                }
+                            }
+                        }                                                
+                    }
+                    else
+                    {
+                        vista.mostrarGanadores("jugadores"); 
+                        salir = true;
+                    }
+
+                    if (salir == false)
+                    {
+                        contador++;
+                        vista.mostrarEstatus(jugadores, enemigos);
+                        turnoE = false;
+                        turnoJ = true;
+                    }
+                }
             }           
         }
         catch (InputMismatchException e)

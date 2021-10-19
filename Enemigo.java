@@ -14,10 +14,13 @@ public class Enemigo extends CombatienteABS<ArrayList <Jugador>>
     protected String habilidadE;
     protected int damageH;
     protected int damageE;
+
+    protected CombatienteABS clon;
     
     public Enemigo()
     {
         super();  
+        clon = null;
     }
     
     /** 
@@ -27,6 +30,14 @@ public class Enemigo extends CombatienteABS<ArrayList <Jugador>>
     {
         return habilidad;
     }
+
+    /** 
+     * @return String
+     */
+    public String getHabilidadE()
+    {
+        return habilidadE;
+    }
     
     /** 
      * @return int
@@ -35,6 +46,15 @@ public class Enemigo extends CombatienteABS<ArrayList <Jugador>>
     {
         return damageH;
     }
+
+    /** 
+     * @return int
+     */
+    public int getDamageE()
+    { 
+        return damageE;
+    }
+    
     
     /** 
      * @param es
@@ -51,25 +71,45 @@ public class Enemigo extends CombatienteABS<ArrayList <Jugador>>
      * @param j
      * @param d
      */
-    public void usarHabilidad(Jugador j, int d)
+    public void usarHabilidad(ArrayList <Jugador> j, int d)
     {
-        j.setVida(d);
+        for (int i = 0; i < j.size(); i++)
+        {
+            j.get(i).setVida(d);
+        }
     }
 
-    /** 
-     * @return int
-     */
-    public int getDamageE()
-    { 
-        return damageE;
-    }
-    
-    /** 
-     * @return String
-     */
-    public String getHabilidadE()
+    //----------- Raid Boss ------------
+
+    public void clonar(String tipo)
     {
-        return habilidadE;
+        if (tipo.equals("Caracal"))
+        {
+            clon = new Mascota();
+        }
+        else if (tipo.equals("Bruja"))      
+        {
+            clon = new Bruja();
+        }
+        else if (tipo.equals("Jefe Bruja"))      
+        {
+            clon = new JefeBruja();
+        }
+    }
+
+    public void variar(int na)
+    {
+        clon.setAtaque(na);
+    }
+
+    public void liberar()
+    {
+        clon = null;
+    }
+
+    public CombatienteABS getClon()
+    {
+        return clon;
     }
     
 }

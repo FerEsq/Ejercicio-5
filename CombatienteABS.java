@@ -56,4 +56,12 @@ public abstract class CombatienteABS<AL>
     {
         this.ataque = a;
     }
+
+    public void usarClon(ArrayList <Jugador> es)
+    {
+        for (int i = 0; i < es.size(); i++)
+        {
+            es.get(i).setVida(this.ataque);
+        }
+    }
 }
