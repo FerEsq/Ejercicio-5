@@ -16,6 +16,7 @@ public abstract class CombatienteABS<AL>
 
     public CombatienteABS()
     {
+        
     }
     
     /** 
@@ -50,13 +51,22 @@ public abstract class CombatienteABS<AL>
         return ataque;
     }
 
+    /** 
+     * @param a
+     */
     public abstract void atacar(AL list); 
     
+    /** 
+     * @param a
+     */
     public void setAtaque(int a)
     {
         this.ataque = a;
     }
 
+    /** 
+     * @param es
+     */
     public void usarClon(ArrayList <Jugador> es)
     {
         for (int i = 0; i < es.size(); i++)

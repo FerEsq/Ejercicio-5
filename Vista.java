@@ -68,6 +68,9 @@ public class Vista
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     }
 
+    /** 
+     * @return int
+     */
     //Menú guerrero
     public int pedirJugadores()
     {
@@ -80,7 +83,10 @@ public class Vista
         op = scan.nextInt();
         return op;
     }
-
+    
+    /** 
+     * @return int
+     */
     //Menú rol
     public int pedirRol()
     {
@@ -93,7 +99,10 @@ public class Vista
         op = scan.nextInt();
         return op;
     }
-
+    
+    /** 
+     * @return int
+     */
     //Menú enemigo
     public int menuEnemigo()
     {
@@ -106,7 +115,10 @@ public class Vista
         op = scan.nextInt();
         return op;
     }
-
+    
+    /** 
+     * @return int
+     */
     //Menú jefe
     public int menuJefe()
     {
@@ -121,6 +133,9 @@ public class Vista
         return op;
     }
 
+     /** 
+      * @return int
+      */
      //Menú raid boss
      public int menuRaid()
      {
@@ -138,6 +153,9 @@ public class Vista
          return op;
      }
 
+     /** 
+      * @return int
+      */
      //Menú variar
      public int menuVariar()
      {
@@ -158,7 +176,11 @@ public class Vista
          }
          return h;
      }
-
+    
+    /** 
+     * @param n
+     * @return int
+     */
     //Menú jugador
     public int menuJugador(int n)
     {
@@ -173,6 +195,10 @@ public class Vista
         return op;
     }
 
+    /** 
+     * @param e
+     * @return int
+     */
     //Menú clonar
     public int pedirClon(ArrayList <CombatienteABS> e)
     {
@@ -193,7 +219,11 @@ public class Vista
 		System.out.println("El Raid ha comenzado, Cailleach la Diosa del invierno se une a la batalla");
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     }
-
+    
+    /** 
+     * @param j
+     * @param e
+     */
     public void mostrarEstatus(ArrayList <Jugador> j, ArrayList <Enemigo> e)
     {
         System.out.println("~~~~~~~~~~~~~~~~ Estatus ~~~~~~~~~~~~~~~");
@@ -219,6 +249,9 @@ public class Vista
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
+    /** 
+     * @param c
+     */
     //Mensaje de ganadores
     public void mostrarGanadores(String c)
     {
@@ -227,6 +260,10 @@ public class Vista
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     }
 
+    /** 
+     * @param n
+     * @param p
+     */
     //Mensaje de muerte de jugador
     public void mostrarMuerteJ(String n, int p)
     {
@@ -236,6 +273,9 @@ public class Vista
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     }
 
+    /** 
+     * @param n
+     */
     //Mensaje de ganadores
     public void mostrarMuerteE(String n)
     {

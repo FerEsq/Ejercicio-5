@@ -22,23 +22,7 @@ public class Enemigo extends CombatienteABS<ArrayList <Jugador>>
         super();  
         clon = null;
     }
-    
-    /** 
-     * @return String
-     */
-    public String getHabilidad()
-    {
-        return habilidad;
-    }
-
-    /** 
-     * @return String
-     */
-    public String getHabilidadE()
-    {
-        return habilidadE;
-    }
-    
+        
     /** 
      * @return int
      */
@@ -78,9 +62,11 @@ public class Enemigo extends CombatienteABS<ArrayList <Jugador>>
             j.get(i).setVida(d);
         }
     }
-
+    
     //----------- Raid Boss ------------
-
+    /** 
+     * @param tipo
+     */
     public void clonar(String tipo)
     {
         if (tipo.equals("Caracal"))
@@ -96,7 +82,10 @@ public class Enemigo extends CombatienteABS<ArrayList <Jugador>>
             clon = new JefeBruja();
         }
     }
-
+ 
+    /** 
+     * @param na
+     */
     public void variar(int na)
     {
         clon.setAtaque(na);
@@ -107,9 +96,11 @@ public class Enemigo extends CombatienteABS<ArrayList <Jugador>>
         clon = null;
     }
 
+    /** 
+     * @return CombatienteABS
+     */
     public CombatienteABS getClon()
     {
         return clon;
     }
-    
 }

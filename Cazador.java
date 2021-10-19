@@ -19,7 +19,10 @@ public class Cazador extends Jugador<ArrayList <Enemigo>>
         this.vida = 300;
         this.ataque = 10;
     }
-
+    
+    /** 
+     * @param es
+     */
     public void usarItem(ArrayList <Enemigo> es)
     {
         for (int i = 0; i < es.size(); i++)

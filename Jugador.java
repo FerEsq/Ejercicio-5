@@ -17,15 +17,7 @@ public abstract class Jugador<COM> extends CombatienteABS<ArrayList <Enemigo>>
     {
         super();
     }
-    
-    /** 
-     * @return Item
-     */
-    public Item getItem()
-    {
-        return item;
-    }
-    
+      
     /** 
      * @param es
      */
@@ -42,6 +34,9 @@ public abstract class Jugador<COM> extends CombatienteABS<ArrayList <Enemigo>>
      */
     public abstract void usarItem(COM c);
 
+    /** 
+     * @return Mascota
+     */
     //Mascotas
     public Mascota getMascota()
     {
